@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- TODO 言語で変動する表示文字列をプロパティファイルに外出しする -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/common.css" th:href="@{/css/common.css}" />
+<script>
+	<!--
+		function searchBook() {
+		
+		bookName = document.bookList.name.value;
+		throwAwaryFlag = document.bookList.throwAwaryFlag.value;
+		pageNumber = "1";
+		nextAction = "/plain-framework-sample/action/bookList/" + throwAwaryFlag + "/" + pageNumber + "/" + bookName;
+		alert(nextAction);
+		location.href=nextAction;
+		}
+	//-->
+</script>
+<title>Top Page</title>
+</head>
+<body>
+	<div id="center">
+		<div id="header" th:text="#{bookList.headerLabel}">購入書籍管理</div>
+		<div th:if="${errorMessages == null}? 'false':'true'" id="error">
+			<span th:text="${errorMessages != null}? 'errorMessages: ': ''">
+				errorMessages: 
+			</span>
+			<span th:utext="${errorMessages != null}? ${errorMessages} : ''">
+				errorMessages: error. 
+			</span>
+		</div>
+		<div id="searchForm">
+			<form method="GET" name="bookList">
+				<span th:text="#{bookList.bookNameLabel}">書籍名</span>:<input type="text" name="name" />
+					<select name="throwAwaryFlag">
+						<option value="0" th:text="#{bookList.throwAwaryFlagZero}">0</option>
+						<option value="1" th:text="#{bookList.throwAwaryFlagOne}">1</option>
+					</select>
+					<input type="button" value="検索" onClick="searchBook()" th:attr="value=#{bookList.searchLabel}" />
+					<input type="reset" value="取消" th:attr="value=#{bookList.resetLabel}" />
+			</form>
+		</div>
+
+
+
+		<table th:if="${books == null}? 'false':'true'" id="booKListTable">
+			<tr>
+				<th id="booKListTableTh" th:text="#{bookList.countLabel}">No.</th>
+				<th id="booKListTableTh" th:text="#{bookList.bookNameLabel}">書籍名</th>
+				<th id="booKListTableTh" th:text="#{bookList.purchaseDateLabel}">購入日</th>
+				<th id="booKListTableTh" th:text="#{bookList.throwAwaryFlagLabel}">状態</th>
+				<th id="booKListTableTh" th:text="#{bookList.createDateLabel}">登録日</th>
+				<th id="booKListTableTh" th:text="#{bookList.editDateLabel}">更新日</th>
+			</tr>
+			<tr th:each="book,stat : ${books}">
+				<td th:text="${stat.count + (pageNumber - 1) * 20}" id="booKListTableTd">1</td>
+				<td th:text="${book.name}" id="booKListTableTd">本の名前</td>
+				<td th:text="${#dates.format(book.purchaseDate4Date, 'yyyy/MM/dd')}" id="booKListTableTd">2012/04/10</td>
+				<td th:text="${book.throwAwaryFlag == 0}? #{bookList.throwAwaryFlagZero} : #{bookList.throwAwaryFlagOne}" id="booKListTableTd">蔵書</td>
+				<td th:text="${#dates.format(book.createDate4Date, 'yyyy/MM/dd')}" id="booKListTableTd">2012/04/11 00:00:00</td>
+				<td th:text="${#dates.format(book.editDate4Date, 'yyyy/MM/dd')}" id="booKListTableTd">2012/04/12 00:00:00</td>
+			</tr>
+			<tr th:remove="all">
+				<td th:remove="all" id="booKListTableTd">2</td>
+				<td th:remove="all" id="booKListTableTd">本の名前2</td>
+				<td th:remove="all" id="booKListTableTd">2012/04/11</td>
+				<td th:remove="all" id="booKListTableTd">破棄</td>
+				<td th:remove="all" id="booKListTableTd">2012/04/12 00:00:00</td>
+				<td th:remove="all" id="booKListTableTd">2012/04/13 00:00:00</td>
+			</tr>
+		</table>
+		<table id="booKListFooterTable">
+			<tr>
+				<td id="booKListFooterTableBefore"><a href="./bookList.html" th:href="@{${beforePageUrl}}" th:if="${beforePageUrl == null}? 'false':'true'" id="before">before</a></td>
+				<td id="booKListFooterTablePageNumber">- <span th:text="${pageNumber}">12</span>- </td>
+				<td id="booKListFooterTableNext"><a href="./bookList.html" th:href="@{${nextPageUrl}}" th:if="${nextPageUrl == null}? 'false':'true'" id="next">next</a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

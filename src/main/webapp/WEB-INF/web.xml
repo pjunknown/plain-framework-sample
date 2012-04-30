@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	
+	<filter>
+        <filter-name>encodingfilter</filter-name>
+        <filter-class>jp.techie.plain.framework.filter.EncodingFilter</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>encodingfilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>jp.techie.plain.framework.servlet.ActionServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
+	</servlet>
+	<servlet>
+		<servlet-name>template</servlet-name>
+		<servlet-class>jp.techie.plain.framework.servlet.TemplateBuildServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+		<async-supported>true</async-supported>
+	</servlet>
+	<context-param>
+		<param-name>resteasy.jndi.resources</param-name>
+		<param-value>java:module/OutputHtmlRestActionImpl</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>resteasy</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServlet30Dispatcher</servlet-class>
+		<async-supported>true</async-supported>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>/action/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>template</servlet-name>
+		<url-pattern>/template/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>resteasy</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+</web-app>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Top Page</title>
+</head>
+<body>
+	<div>
+		errorMessages: <span th:text="${errorMessages}">error.</span>
+	</div>
+	<table>
+		<tr th:each="urlParam,stat : ${urlParamList}">
+			<th th:text="${stat.count}">1</th>
+			<td th:text="${urlParam}">value1</td>
+		</tr>
+		<tr th:remove="all">
+			<th th:remove="all">2</th>
+			<td th:remove="all">value2</td>
+		</tr>
+	</table>
+	<div>
+		urlParamString: <span th:text="${session.urlParamString}">sample1,sample2,sampl3</span>
+	</div>
+</body>
+</html>

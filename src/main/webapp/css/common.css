@@ -1,0 +1,78 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
+#booKListTable {
+	width: 760px;
+	margin: 10px 0px 10px 10px;
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+#booKListTableTh {
+	background-color: #e0ffff;
+	border: 1px solid gray;
+	text-align: center;
+}
+#booKListTableTd {
+	border: 1px solid gray;
+	text-align: center;
+}
+
+
+#center {
+	width: 780px;
+	position: absolute;
+	left: 50%;
+	margin-left:-380px;
+}
+
+#header {
+	background-color: #ccccff;
+	margin: 10px 0px 10px 10px;
+	width: 760px;
+	height: 50px;
+	text-align: center;
+	font-size: 30px
+}
+
+#error {
+	margin: 10px 0px 10px 10px;
+	width: 760px;
+	color:red;
+	font-size: 18px
+}
+
+#searchForm
+{
+	margin: 10px 0px 10px 10px;
+	width: 760px;
+	text-align: center;
+	font-size: 18px
+}
+
+#booKListFooterTable{
+	width: 760px;
+	margin: 10px 0px 10px 10px;
+	border: 0px solid white;
+	border-collapse: collapse;
+}
+
+#booKListFooterTableBefore{
+	width: 250px;
+	text-align:left;
+	border: 0px solid white;
+	border-collapse: collapse;
+}
+#booKListFooterTablePageNumber{
+	width: 260px;
+	text-align:center;
+	border: 0px solid white;
+	border-collapse: collapse;
+}
+
+#booKListFooterTableNext{
+	width: 250px;
+	text-align:right;
+	border: 0px solid white;
+	border-collapse: collapse;
+}
