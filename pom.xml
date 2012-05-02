@@ -66,6 +66,22 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>plain-framework-repo</id>
+			<name>The Plain Framework Maven2 Repository</name>
+			<url>http://develop.techie.jp/maven2</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+			<id>plain-framework-snapshot-repo</id>
+			<name>The Plain Framwork Repository Snapshot</name>
+			<url>http://develop.techie.jp/maven2-snapshot</url>
+		</repository>
+	</repositories>
 
 	<!-- Dependency Settings -->
 	<dependencies>
